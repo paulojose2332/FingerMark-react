@@ -78,6 +78,12 @@ const styles = theme => ({
 
   alert: {
     width: '450px'
+  },
+
+  locationText: {
+    '&:hover': {
+      cursor: 'pointer'
+    }
   }
 });
 
@@ -184,8 +190,8 @@ function App(props) {
               )
               : (
                 <Grid direction="column" container item>
-                  <Grid className={ classes.locationLabel } justify="center" item>
-                    <Typography variant="h5">
+                  <Grid className={ classes.locationLabel } justify="center" container item>
+                    <Typography className={ classes.locationText} variant="h5" onClick={() => window.open(`https://www.google.com/maps/place/${city.replace(" ","+")}`)}>
                       {country ? `${city}, ${country}` : `${city}`}
                     </Typography>
                   </Grid>

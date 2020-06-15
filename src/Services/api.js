@@ -1,5 +1,9 @@
 import axios from 'axios'
 
+//Using open-weather-map, its the most recommended free weather api
+//https://rapidapi.com/community/api/open-weather-map
+
+//Need to be careful when testing, the free api has only 100 dayle quota
 export default function getData(city, country, setCity, setCountry, setCurrentTemp, setMaxTemp, setMinTemp, setClouds, setWind, setHumidity, setLoading, setError){
     
     const url = "https://community-open-weather-map.p.rapidapi.com/weather"
