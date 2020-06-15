@@ -32,7 +32,8 @@ const styles = theme => ({
     minHeight: '380px',
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    boxShadow: '0px 3px 3px -2px rgba(0,0,0,0.2), 0px 3px 4px 0px rgba(0,0,0,0.14), 0px 1px 8px 0px rgba(0,0,0,0.12)'
   },
 
   dataCard: {
@@ -48,8 +49,6 @@ const styles = theme => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    boxShadow: '0px 3px 3px -2px rgba(0,0,0,0.2), 0px 3px 4px 0px rgba(0,0,0,0.14), 0px 1px 8px 0px rgba(0,0,0,0.12)'
-
   },
 
   mainGrid:{
@@ -109,12 +108,17 @@ function App(props) {
       //since i'm not using redux, i had two options
       //send all state functions to the api function or manage the response inside the page
       //chose the first one
+      const arr = text.split(',')
+      if(arr[1]) {
+        setCountry(arr[1])
+      }
       getData(text, country, setCity, setCountry, setCurrentTemp, setMaxTemp, setMinTemp, setClouds, setWind, setHumidity, setLoading, setError)
     } catch (error) {
       setLoading(false)
       setError(true)      
     }
   }
+
 
   useEffect(() => {
     //simple check to show error
@@ -144,14 +148,17 @@ function App(props) {
           item
         >
           <Grid item>
-            <TextField
-                className={ classes.searchField }
-                id="outlined-basic"
-                label="Searching weather of"
-                variant="outlined"
-                value={text}
-                onChange={(e) => setText(e.target.value) }
-              />
+            <form noValidate>
+              <TextField
+                  className={ classes.searchField }
+                  id="outlined-basic"
+                  label="Searching weather of"
+                  variant="outlined"
+                  placeholder="Itajai / Itajai, BR"
+                  value={text}
+                  onChange={(e) => setText(e.target.value) }
+                />
+            </form>
           </Grid>
           <Grid item>
             <Button variant="contained" color="primary" onClick={() => searchData()}>
@@ -191,7 +198,7 @@ function App(props) {
           </Card>
         </Grid>
       </Grid>
-      {/* If erro stat is true, a snackbar with minimum info will apear just to explain the user */}
+      {/* If error stats is true, a snackbar with minimum info will apear just to explain the user */}
       {error &&
         <Alert className={ classes.alert } variant="outlined" severity="warning">
           City not found, please try again or change city

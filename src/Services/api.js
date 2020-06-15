@@ -33,6 +33,8 @@ export default function getData(city, country, setCity, setCountry, setCurrentTe
                 found = true
                 setCity(data.name)
                 setCountry(data.sys.country)
+
+                //I deduct 273.15 from the temperatures because the api returns in Kelvin and I want to show in Celsius
                 setCurrentTemp(Math.round(data.main.temp - 273.15))
                 setMaxTemp(Math.round(data.main.temp_max - 273.15))
                 setMinTemp(Math.round(data.main.temp_min - 273.15))
