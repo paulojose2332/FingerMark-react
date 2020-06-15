@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App syle={{width: '100%', height: '100%'}}/>
   </React.StrictMode>,
   document.getElementById('root')
 );
